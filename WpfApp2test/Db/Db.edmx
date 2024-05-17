@@ -1,0 +1,864 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище DBkyrsDamoModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id_client" />
+          </Key>
+          <Property Name="Id_client" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Surname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name_client" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Middle_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Date_client" Type="date" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Id_pol" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Id_teg" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Flag">
+          <Key>
+            <PropertyRef Name="Id_flag" />
+          </Key>
+          <Property Name="Id_flag" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_flag" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Istoria_pokupok">
+          <Key>
+            <PropertyRef Name="Id_IP" />
+          </Key>
+          <Property Name="Id_IP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_tovar" Type="int" Nullable="false" />
+          <Property Name="Date_pokupki" Type="date" Nullable="false" />
+          <Property Name="Kolvo" Type="int" Nullable="false" />
+          <Property Name="Id_client" Type="int" Nullable="false" />
+          <Property Name="Id_usluga" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kategoria">
+          <Key>
+            <PropertyRef Name="Id_kategoria" />
+          </Key>
+          <Property Name="Id_kategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_kategoria" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Podkategoria">
+          <Key>
+            <PropertyRef Name="Id_podkategoria" />
+          </Key>
+          <Property Name="Id_podkategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_podkategoria" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id_kategoria" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pol">
+          <Key>
+            <PropertyRef Name="Id_pol" />
+          </Key>
+          <Property Name="Id_pol" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Name_pol" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Poseshenie_client">
+          <Key>
+            <PropertyRef Name="Id_PC" />
+          </Key>
+          <Property Name="Id_PC" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_client" Type="int" Nullable="false" />
+          <Property Name="Date_poseshenie" Type="date" Nullable="false" />
+          <Property Name="Time_poseshenie" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Dlitelnost_poseshenie" Type="int" Nullable="false" />
+          <Property Name="Photo_DO" Type="image" />
+          <Property Name="Photo_POSLE" Type="image" />
+          <Property Name="Id_usluga" Type="int" />
+          <Property Name="Id_sotrudnik" Type="int" />
+          <Property Name="Primechanie" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Proizvoditel">
+          <Key>
+            <PropertyRef Name="Id_proizvoditel" />
+          </Key>
+          <Property Name="Id_proizvoditel" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_proizvoditel" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Teg">
+          <Key>
+            <PropertyRef Name="Id_teg" />
+          </Key>
+          <Property Name="Id_teg" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_teg" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Color_teg" Type="char" MaxLength="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tovar">
+          <Key>
+            <PropertyRef Name="Id_tovar" />
+          </Key>
+          <Property Name="Id_tovar" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_tovar" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id_podkategoria" Type="int" Nullable="false" />
+          <Property Name="Zakupka" Type="money" Nullable="false" />
+          <Property Name="Procent" Type="float" Nullable="false" />
+          <Property Name="Itog_sum" Type="money" Nullable="false" />
+          <Property Name="Harakteristika" Type="varchar(max)" Nullable="false" />
+          <Property Name="Primechanie" Type="varchar(max)" />
+          <Property Name="Ves" Type="float" Nullable="false" />
+          <Property Name="Id_proizvoditel" Type="int" Nullable="false" />
+          <Property Name="Srok_godnosti" Type="date" Nullable="false" />
+          <Property Name="Image" Type="image" Nullable="false" />
+          <Property Name="Dop_image" Type="image" />
+          <Property Name="Id_flag" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id_user" />
+          </Key>
+          <Property Name="Id_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Mail" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usluga">
+          <Key>
+            <PropertyRef Name="Id_usluga" />
+          </Key>
+          <Property Name="Id_usluga" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_usluga" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Opisanie" Type="varchar(max)" Nullable="false" />
+          <Property Name="Stoimost" Type="money" Nullable="false" />
+          <Property Name="Skidka" Type="float" />
+          <Property Name="Prodolzhitelnost" Type="int" Nullable="false" />
+          <Property Name="Osn_photo" Type="image" Nullable="false" />
+          <Property Name="Dop_photo" Type="image" />
+        </EntityType>
+        <Association Name="FK_Client_Pol">
+          <End Role="Pol" Type="Self.Pol" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pol">
+              <PropertyRef Name="Id_pol" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="Id_pol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Teg">
+          <End Role="Teg" Type="Self.Teg" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teg">
+              <PropertyRef Name="Id_teg" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="Id_teg" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Istoria_pokupok_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Istoria_pokupok" Type="Self.Istoria_pokupok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id_client" />
+            </Principal>
+            <Dependent Role="Istoria_pokupok">
+              <PropertyRef Name="Id_client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Istoria_pokupok_Tovar">
+          <End Role="Tovar" Type="Self.Tovar" Multiplicity="1" />
+          <End Role="Istoria_pokupok" Type="Self.Istoria_pokupok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tovar">
+              <PropertyRef Name="Id_tovar" />
+            </Principal>
+            <Dependent Role="Istoria_pokupok">
+              <PropertyRef Name="Id_tovar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Istoria_pokupok_Usluga">
+          <End Role="Usluga" Type="Self.Usluga" Multiplicity="1" />
+          <End Role="Istoria_pokupok" Type="Self.Istoria_pokupok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usluga">
+              <PropertyRef Name="Id_usluga" />
+            </Principal>
+            <Dependent Role="Istoria_pokupok">
+              <PropertyRef Name="Id_usluga" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Podkategoria_Kategoria">
+          <End Role="Kategoria" Type="Self.Kategoria" Multiplicity="1" />
+          <End Role="Podkategoria" Type="Self.Podkategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategoria">
+              <PropertyRef Name="Id_kategoria" />
+            </Principal>
+            <Dependent Role="Podkategoria">
+              <PropertyRef Name="Id_kategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Poseshenie_client_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Poseshenie_client" Type="Self.Poseshenie_client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id_client" />
+            </Principal>
+            <Dependent Role="Poseshenie_client">
+              <PropertyRef Name="Id_client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Poseshenie_client_Usluga">
+          <End Role="Usluga" Type="Self.Usluga" Multiplicity="0..1" />
+          <End Role="Poseshenie_client" Type="Self.Poseshenie_client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usluga">
+              <PropertyRef Name="Id_usluga" />
+            </Principal>
+            <Dependent Role="Poseshenie_client">
+              <PropertyRef Name="Id_usluga" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tovar_Flag">
+          <End Role="Flag" Type="Self.Flag" Multiplicity="1" />
+          <End Role="Tovar" Type="Self.Tovar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flag">
+              <PropertyRef Name="Id_flag" />
+            </Principal>
+            <Dependent Role="Tovar">
+              <PropertyRef Name="Id_flag" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tovar_Podkategoria">
+          <End Role="Podkategoria" Type="Self.Podkategoria" Multiplicity="1" />
+          <End Role="Tovar" Type="Self.Tovar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Podkategoria">
+              <PropertyRef Name="Id_podkategoria" />
+            </Principal>
+            <Dependent Role="Tovar">
+              <PropertyRef Name="Id_podkategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tovar_Proizvoditel">
+          <End Role="Proizvoditel" Type="Self.Proizvoditel" Multiplicity="1" />
+          <End Role="Tovar" Type="Self.Tovar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proizvoditel">
+              <PropertyRef Name="Id_proizvoditel" />
+            </Principal>
+            <Dependent Role="Tovar">
+              <PropertyRef Name="Id_proizvoditel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище DBkyrsDamoModelContainer">
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Flag" EntityType="Self.Flag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Istoria_pokupok" EntityType="Self.Istoria_pokupok" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kategoria" EntityType="Self.Kategoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Podkategoria" EntityType="Self.Podkategoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pol" EntityType="Self.Pol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Poseshenie_client" EntityType="Self.Poseshenie_client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proizvoditel" EntityType="Self.Proizvoditel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teg" EntityType="Self.Teg" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tovar" EntityType="Self.Tovar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usluga" EntityType="Self.Usluga" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Client_Pol" Association="Self.FK_Client_Pol">
+            <End Role="Pol" EntitySet="Pol" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Teg" Association="Self.FK_Client_Teg">
+            <End Role="Teg" EntitySet="Teg" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Istoria_pokupok_Client" Association="Self.FK_Istoria_pokupok_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Istoria_pokupok" EntitySet="Istoria_pokupok" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Istoria_pokupok_Tovar" Association="Self.FK_Istoria_pokupok_Tovar">
+            <End Role="Tovar" EntitySet="Tovar" />
+            <End Role="Istoria_pokupok" EntitySet="Istoria_pokupok" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Istoria_pokupok_Usluga" Association="Self.FK_Istoria_pokupok_Usluga">
+            <End Role="Usluga" EntitySet="Usluga" />
+            <End Role="Istoria_pokupok" EntitySet="Istoria_pokupok" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Podkategoria_Kategoria" Association="Self.FK_Podkategoria_Kategoria">
+            <End Role="Kategoria" EntitySet="Kategoria" />
+            <End Role="Podkategoria" EntitySet="Podkategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Poseshenie_client_Client" Association="Self.FK_Poseshenie_client_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Poseshenie_client" EntitySet="Poseshenie_client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Poseshenie_client_Usluga" Association="Self.FK_Poseshenie_client_Usluga">
+            <End Role="Usluga" EntitySet="Usluga" />
+            <End Role="Poseshenie_client" EntitySet="Poseshenie_client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tovar_Flag" Association="Self.FK_Tovar_Flag">
+            <End Role="Flag" EntitySet="Flag" />
+            <End Role="Tovar" EntitySet="Tovar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tovar_Podkategoria" Association="Self.FK_Tovar_Podkategoria">
+            <End Role="Podkategoria" EntitySet="Podkategoria" />
+            <End Role="Tovar" EntitySet="Tovar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tovar_Proizvoditel" Association="Self.FK_Tovar_Proizvoditel">
+            <End Role="Proizvoditel" EntitySet="Proizvoditel" />
+            <End Role="Tovar" EntitySet="Tovar" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBkyrsDamoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id_client" />
+          </Key>
+          <Property Name="Id_client" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name_client" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Middle_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date_client" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Phone" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id_pol" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Id_teg" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pol" Relationship="Self.FK_Client_Pol" FromRole="Client" ToRole="Pol" />
+          <NavigationProperty Name="Teg" Relationship="Self.FK_Client_Teg" FromRole="Client" ToRole="Teg" />
+          <NavigationProperty Name="Istoria_pokupok" Relationship="Self.FK_Istoria_pokupok_Client" FromRole="Client" ToRole="Istoria_pokupok" />
+          <NavigationProperty Name="Poseshenie_client" Relationship="Self.FK_Poseshenie_client_Client" FromRole="Client" ToRole="Poseshenie_client" />
+        </EntityType>
+        <EntityType Name="Flag">
+          <Key>
+            <PropertyRef Name="Id_flag" />
+          </Key>
+          <Property Name="Id_flag" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_flag" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Tovars" Relationship="Self.FK_Tovar_Flag" FromRole="Flag" ToRole="Tovar" />
+        </EntityType>
+        <EntityType Name="Istoria_pokupok">
+          <Key>
+            <PropertyRef Name="Id_IP" />
+          </Key>
+          <Property Name="Id_IP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_tovar" Type="Int32" Nullable="false" />
+          <Property Name="Date_pokupki" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Kolvo" Type="Int32" Nullable="false" />
+          <Property Name="Id_client" Type="Int32" Nullable="false" />
+          <Property Name="Id_usluga" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Istoria_pokupok_Client" FromRole="Istoria_pokupok" ToRole="Client" />
+          <NavigationProperty Name="Tovar" Relationship="Self.FK_Istoria_pokupok_Tovar" FromRole="Istoria_pokupok" ToRole="Tovar" />
+          <NavigationProperty Name="Usluga" Relationship="Self.FK_Istoria_pokupok_Usluga" FromRole="Istoria_pokupok" ToRole="Usluga" />
+        </EntityType>
+        <EntityType Name="Kategoria">
+          <Key>
+            <PropertyRef Name="Id_kategoria" />
+          </Key>
+          <Property Name="Id_kategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_kategoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Podkategorias" Relationship="Self.FK_Podkategoria_Kategoria" FromRole="Kategoria" ToRole="Podkategoria" />
+        </EntityType>
+        <EntityType Name="Podkategoria">
+          <Key>
+            <PropertyRef Name="Id_podkategoria" />
+          </Key>
+          <Property Name="Id_podkategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_podkategoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id_kategoria" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Kategoria" Relationship="Self.FK_Podkategoria_Kategoria" FromRole="Podkategoria" ToRole="Kategoria" />
+          <NavigationProperty Name="Tovars" Relationship="Self.FK_Tovar_Podkategoria" FromRole="Podkategoria" ToRole="Tovar" />
+        </EntityType>
+        <EntityType Name="Pol">
+          <Key>
+            <PropertyRef Name="Id_pol" />
+          </Key>
+          <Property Name="Id_pol" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Name_pol" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK_Client_Pol" FromRole="Pol" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="Poseshenie_client">
+          <Key>
+            <PropertyRef Name="Id_PC" />
+          </Key>
+          <Property Name="Id_PC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_client" Type="Int32" Nullable="false" />
+          <Property Name="Date_poseshenie" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Time_poseshenie" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Dlitelnost_poseshenie" Type="Int32" Nullable="false" />
+          <Property Name="Photo_DO" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Photo_POSLE" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Id_usluga" Type="Int32" />
+          <Property Name="Id_sotrudnik" Type="Int32" />
+          <Property Name="Primechanie" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Poseshenie_client_Client" FromRole="Poseshenie_client" ToRole="Client" />
+          <NavigationProperty Name="Usluga" Relationship="Self.FK_Poseshenie_client_Usluga" FromRole="Poseshenie_client" ToRole="Usluga" />
+        </EntityType>
+        <EntityType Name="Proizvoditel">
+          <Key>
+            <PropertyRef Name="Id_proizvoditel" />
+          </Key>
+          <Property Name="Id_proizvoditel" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_proizvoditel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Tovars" Relationship="Self.FK_Tovar_Proizvoditel" FromRole="Proizvoditel" ToRole="Tovar" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Teg">
+          <Key>
+            <PropertyRef Name="Id_teg" />
+          </Key>
+          <Property Name="Id_teg" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_teg" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Color_teg" Type="String" MaxLength="7" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK_Client_Teg" FromRole="Teg" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="Tovar">
+          <Key>
+            <PropertyRef Name="Id_tovar" />
+          </Key>
+          <Property Name="Id_tovar" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_tovar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id_podkategoria" Type="Int32" Nullable="false" />
+          <Property Name="Zakupka" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Procent" Type="Double" Nullable="false" />
+          <Property Name="Itog_sum" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Harakteristika" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Primechanie" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Ves" Type="Double" Nullable="false" />
+          <Property Name="Id_proizvoditel" Type="Int32" Nullable="false" />
+          <Property Name="Srok_godnosti" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="Dop_image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Id_flag" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Flag" Relationship="Self.FK_Tovar_Flag" FromRole="Tovar" ToRole="Flag" />
+          <NavigationProperty Name="Istoria_pokupok" Relationship="Self.FK_Istoria_pokupok_Tovar" FromRole="Tovar" ToRole="Istoria_pokupok" />
+          <NavigationProperty Name="Podkategoria" Relationship="Self.FK_Tovar_Podkategoria" FromRole="Tovar" ToRole="Podkategoria" />
+          <NavigationProperty Name="Proizvoditel" Relationship="Self.FK_Tovar_Proizvoditel" FromRole="Tovar" ToRole="Proizvoditel" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id_user" />
+          </Key>
+          <Property Name="Id_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usluga">
+          <Key>
+            <PropertyRef Name="Id_usluga" />
+          </Key>
+          <Property Name="Id_usluga" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_usluga" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Opisanie" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Stoimost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Skidka" Type="Double" />
+          <Property Name="Prodolzhitelnost" Type="Int32" Nullable="false" />
+          <Property Name="Osn_photo" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="Dop_photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Istoria_pokupok" Relationship="Self.FK_Istoria_pokupok_Usluga" FromRole="Usluga" ToRole="Istoria_pokupok" />
+          <NavigationProperty Name="Poseshenie_client" Relationship="Self.FK_Poseshenie_client_Usluga" FromRole="Usluga" ToRole="Poseshenie_client" />
+        </EntityType>
+        <Association Name="FK_Client_Pol">
+          <End Role="Pol" Type="Self.Pol" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pol">
+              <PropertyRef Name="Id_pol" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="Id_pol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Teg">
+          <End Role="Teg" Type="Self.Teg" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teg">
+              <PropertyRef Name="Id_teg" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="Id_teg" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Istoria_pokupok_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Istoria_pokupok" Type="Self.Istoria_pokupok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id_client" />
+            </Principal>
+            <Dependent Role="Istoria_pokupok">
+              <PropertyRef Name="Id_client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Poseshenie_client_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Poseshenie_client" Type="Self.Poseshenie_client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id_client" />
+            </Principal>
+            <Dependent Role="Poseshenie_client">
+              <PropertyRef Name="Id_client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tovar_Flag">
+          <End Role="Flag" Type="Self.Flag" Multiplicity="1" />
+          <End Role="Tovar" Type="Self.Tovar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flag">
+              <PropertyRef Name="Id_flag" />
+            </Principal>
+            <Dependent Role="Tovar">
+              <PropertyRef Name="Id_flag" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Istoria_pokupok_Tovar">
+          <End Role="Tovar" Type="Self.Tovar" Multiplicity="1" />
+          <End Role="Istoria_pokupok" Type="Self.Istoria_pokupok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tovar">
+              <PropertyRef Name="Id_tovar" />
+            </Principal>
+            <Dependent Role="Istoria_pokupok">
+              <PropertyRef Name="Id_tovar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Istoria_pokupok_Usluga">
+          <End Role="Usluga" Type="Self.Usluga" Multiplicity="1" />
+          <End Role="Istoria_pokupok" Type="Self.Istoria_pokupok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usluga">
+              <PropertyRef Name="Id_usluga" />
+            </Principal>
+            <Dependent Role="Istoria_pokupok">
+              <PropertyRef Name="Id_usluga" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Podkategoria_Kategoria">
+          <End Role="Kategoria" Type="Self.Kategoria" Multiplicity="1" />
+          <End Role="Podkategoria" Type="Self.Podkategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategoria">
+              <PropertyRef Name="Id_kategoria" />
+            </Principal>
+            <Dependent Role="Podkategoria">
+              <PropertyRef Name="Id_kategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tovar_Podkategoria">
+          <End Role="Podkategoria" Type="Self.Podkategoria" Multiplicity="1" />
+          <End Role="Tovar" Type="Self.Tovar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Podkategoria">
+              <PropertyRef Name="Id_podkategoria" />
+            </Principal>
+            <Dependent Role="Tovar">
+              <PropertyRef Name="Id_podkategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Poseshenie_client_Usluga">
+          <End Role="Usluga" Type="Self.Usluga" Multiplicity="0..1" />
+          <End Role="Poseshenie_client" Type="Self.Poseshenie_client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usluga">
+              <PropertyRef Name="Id_usluga" />
+            </Principal>
+            <Dependent Role="Poseshenie_client">
+              <PropertyRef Name="Id_usluga" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tovar_Proizvoditel">
+          <End Role="Proizvoditel" Type="Self.Proizvoditel" Multiplicity="1" />
+          <End Role="Tovar" Type="Self.Tovar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proizvoditel">
+              <PropertyRef Name="Id_proizvoditel" />
+            </Principal>
+            <Dependent Role="Tovar">
+              <PropertyRef Name="Id_proizvoditel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="user105dbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clients" EntityType="Self.Client" />
+          <EntitySet Name="Flags" EntityType="Self.Flag" />
+          <EntitySet Name="Istoria_pokupok" EntityType="Self.Istoria_pokupok" />
+          <EntitySet Name="Kategorias" EntityType="Self.Kategoria" />
+          <EntitySet Name="Podkategorias" EntityType="Self.Podkategoria" />
+          <EntitySet Name="Pols" EntityType="Self.Pol" />
+          <EntitySet Name="Poseshenie_client" EntityType="Self.Poseshenie_client" />
+          <EntitySet Name="Proizvoditels" EntityType="Self.Proizvoditel" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Tegs" EntityType="Self.Teg" />
+          <EntitySet Name="Tovars" EntityType="Self.Tovar" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Uslugas" EntityType="Self.Usluga" />
+          <AssociationSet Name="FK_Client_Pol" Association="Self.FK_Client_Pol">
+            <End Role="Pol" EntitySet="Pols" />
+            <End Role="Client" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Teg" Association="Self.FK_Client_Teg">
+            <End Role="Teg" EntitySet="Tegs" />
+            <End Role="Client" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Istoria_pokupok_Client" Association="Self.FK_Istoria_pokupok_Client">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="Istoria_pokupok" EntitySet="Istoria_pokupok" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Poseshenie_client_Client" Association="Self.FK_Poseshenie_client_Client">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="Poseshenie_client" EntitySet="Poseshenie_client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tovar_Flag" Association="Self.FK_Tovar_Flag">
+            <End Role="Flag" EntitySet="Flags" />
+            <End Role="Tovar" EntitySet="Tovars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Istoria_pokupok_Tovar" Association="Self.FK_Istoria_pokupok_Tovar">
+            <End Role="Tovar" EntitySet="Tovars" />
+            <End Role="Istoria_pokupok" EntitySet="Istoria_pokupok" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Istoria_pokupok_Usluga" Association="Self.FK_Istoria_pokupok_Usluga">
+            <End Role="Usluga" EntitySet="Uslugas" />
+            <End Role="Istoria_pokupok" EntitySet="Istoria_pokupok" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Podkategoria_Kategoria" Association="Self.FK_Podkategoria_Kategoria">
+            <End Role="Kategoria" EntitySet="Kategorias" />
+            <End Role="Podkategoria" EntitySet="Podkategorias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tovar_Podkategoria" Association="Self.FK_Tovar_Podkategoria">
+            <End Role="Podkategoria" EntitySet="Podkategorias" />
+            <End Role="Tovar" EntitySet="Tovars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Poseshenie_client_Usluga" Association="Self.FK_Poseshenie_client_Usluga">
+            <End Role="Usluga" EntitySet="Uslugas" />
+            <End Role="Poseshenie_client" EntitySet="Poseshenie_client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tovar_Proizvoditel" Association="Self.FK_Tovar_Proizvoditel">
+            <End Role="Proizvoditel" EntitySet="Proizvoditels" />
+            <End Role="Tovar" EntitySet="Tovars" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище DBkyrsDamoModelContainer" CdmEntityContainer="user105dbEntities">
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="DBkyrsDamoModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="Id_client" ColumnName="Id_client" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name_client" ColumnName="Name_client" />
+                <ScalarProperty Name="Middle_name" ColumnName="Middle_name" />
+                <ScalarProperty Name="Date_client" ColumnName="Date_client" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id_pol" ColumnName="Id_pol" />
+                <ScalarProperty Name="Id_teg" ColumnName="Id_teg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Flags">
+            <EntityTypeMapping TypeName="DBkyrsDamoModel.Flag">
+              <MappingFragment StoreEntitySet="Flag">
+                <ScalarProperty Name="Id_flag" ColumnName="Id_flag" />
+                <ScalarProperty Name="Name_flag" ColumnName="Name_flag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Istoria_pokupok">
+            <EntityTypeMapping TypeName="DBkyrsDamoModel.Istoria_pokupok">
+              <MappingFragment StoreEntitySet="Istoria_pokupok">
+                <ScalarProperty Name="Id_IP" ColumnName="Id_IP" />
+                <ScalarProperty Name="Id_tovar" ColumnName="Id_tovar" />
+                <ScalarProperty Name="Date_pokupki" ColumnName="Date_pokupki" />
+                <ScalarProperty Name="Kolvo" ColumnName="Kolvo" />
+                <ScalarProperty Name="Id_client" ColumnName="Id_client" />
+                <ScalarProperty Name="Id_usluga" ColumnName="Id_usluga" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kategorias">
+            <EntityTypeMapping TypeName="DBkyrsDamoModel.Kategoria">
+              <MappingFragment StoreEntitySet="Kategoria">
+                <ScalarProperty Name="Id_kategoria" ColumnName="Id_kategoria" />
+                <ScalarProperty Name="Name_kategoria" ColumnName="Name_kategoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Podkategorias">
+            <EntityTypeMapping TypeName="DBkyrsDamoModel.Podkategoria">
+              <MappingFragment StoreEntitySet="Podkategoria">
+                <ScalarProperty Name="Id_podkategoria" ColumnName="Id_podkategoria" />
+                <ScalarProperty Name="Name_podkategoria" ColumnName="Name_podkategoria" />
+                <ScalarProperty Name="Id_kategoria" ColumnName="Id_kategoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pols">
+            <EntityTypeMapping TypeName="DBkyrsDamoModel.Pol">
+              <MappingFragment StoreEntitySet="Pol">
+                <ScalarProperty Name="Id_pol" ColumnName="Id_pol" />
+                <ScalarProperty Name="Name_pol" ColumnName="Name_pol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Poseshenie_client">
+            <EntityTypeMapping TypeName="DBkyrsDamoModel.Poseshenie_client">
+              <MappingFragment StoreEntitySet="Poseshenie_client">
+                <ScalarProperty Name="Id_PC" ColumnName="Id_PC" />
+                <ScalarProperty Name="Id_client" ColumnName="Id_client" />
+                <ScalarProperty Name="Date_poseshenie" ColumnName="Date_poseshenie" />
+                <ScalarProperty Name="Time_poseshenie" ColumnName="Time_poseshenie" />
+                <ScalarProperty Name="Dlitelnost_poseshenie" ColumnName="Dlitelnost_poseshenie" />
+                <ScalarProperty Name="Photo_DO" ColumnName="Photo_DO" />
+                <ScalarProperty Name="Photo_POSLE" ColumnName="Photo_POSLE" />
+                <ScalarProperty Name="Id_usluga" ColumnName="Id_usluga" />
+                <ScalarProperty Name="Id_sotrudnik" ColumnName="Id_sotrudnik" />
+                <ScalarProperty Name="Primechanie" ColumnName="Primechanie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proizvoditels">
+            <EntityTypeMapping TypeName="DBkyrsDamoModel.Proizvoditel">
+              <MappingFragment StoreEntitySet="Proizvoditel">
+                <ScalarProperty Name="Id_proizvoditel" ColumnName="Id_proizvoditel" />
+                <ScalarProperty Name="Name_proizvoditel" ColumnName="Name_proizvoditel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DBkyrsDamoModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tegs">
+            <EntityTypeMapping TypeName="DBkyrsDamoModel.Teg">
+              <MappingFragment StoreEntitySet="Teg">
+                <ScalarProperty Name="Id_teg" ColumnName="Id_teg" />
+                <ScalarProperty Name="Name_teg" ColumnName="Name_teg" />
+                <ScalarProperty Name="Color_teg" ColumnName="Color_teg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tovars">
+            <EntityTypeMapping TypeName="DBkyrsDamoModel.Tovar">
+              <MappingFragment StoreEntitySet="Tovar">
+                <ScalarProperty Name="Id_tovar" ColumnName="Id_tovar" />
+                <ScalarProperty Name="Name_tovar" ColumnName="Name_tovar" />
+                <ScalarProperty Name="Id_podkategoria" ColumnName="Id_podkategoria" />
+                <ScalarProperty Name="Zakupka" ColumnName="Zakupka" />
+                <ScalarProperty Name="Procent" ColumnName="Procent" />
+                <ScalarProperty Name="Itog_sum" ColumnName="Itog_sum" />
+                <ScalarProperty Name="Harakteristika" ColumnName="Harakteristika" />
+                <ScalarProperty Name="Primechanie" ColumnName="Primechanie" />
+                <ScalarProperty Name="Ves" ColumnName="Ves" />
+                <ScalarProperty Name="Id_proizvoditel" ColumnName="Id_proizvoditel" />
+                <ScalarProperty Name="Srok_godnosti" ColumnName="Srok_godnosti" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Dop_image" ColumnName="Dop_image" />
+                <ScalarProperty Name="Id_flag" ColumnName="Id_flag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DBkyrsDamoModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id_user" ColumnName="Id_user" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Uslugas">
+            <EntityTypeMapping TypeName="DBkyrsDamoModel.Usluga">
+              <MappingFragment StoreEntitySet="Usluga">
+                <ScalarProperty Name="Id_usluga" ColumnName="Id_usluga" />
+                <ScalarProperty Name="Name_usluga" ColumnName="Name_usluga" />
+                <ScalarProperty Name="Opisanie" ColumnName="Opisanie" />
+                <ScalarProperty Name="Stoimost" ColumnName="Stoimost" />
+                <ScalarProperty Name="Skidka" ColumnName="Skidka" />
+                <ScalarProperty Name="Prodolzhitelnost" ColumnName="Prodolzhitelnost" />
+                <ScalarProperty Name="Osn_photo" ColumnName="Osn_photo" />
+                <ScalarProperty Name="Dop_photo" ColumnName="Dop_photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
